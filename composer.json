@@ -1,0 +1,25 @@
+{
+    "name": "lavigor/reenable",
+    "type": "phpbb-extension",
+    "description": "This extension allows you to quickly reenable other extensions to save time for extension developers.",
+    "version": "1.0.0",
+    "keywords": ["phpbb", "extension", "reenable", "extensions"],
+    "time": "2014-08-05",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Igor Lavrov",
+            "homepage": "https://github.com/lavigor",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "extra": {
+        "display-name": "Reenable extensions",
+        "soft-require": {
+           "phpbb/phpbb": "3.1.0-RC2"
+        }
+    }
+}
