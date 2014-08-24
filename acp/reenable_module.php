@@ -86,6 +86,7 @@ class reenable_module
 				break;
 
 			case 'reenable':
+			case 'reinstall':
 				if (!$phpbb_extension_manager->is_enabled($ext_name))
 				{
 					redirect($this->u_action);
@@ -98,10 +99,32 @@ class reenable_module
 					{
 						$template->assign_var('S_NEXT_STEP', true);
 
-						meta_refresh(0, $this->u_action . '&amp;action=reenable&amp;ext_name=' . urlencode($ext_name) . '&amp;hash=' . generate_link_hash('reenable.' . $ext_name));
+						meta_refresh(0, $this->u_action . '&amp;action='.$action.'&amp;ext_name=' . urlencode($ext_name));
 					}
 				}
 				$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_DISABLE', time(), array($ext_name));
+
+				if ($action == 'reinstall')
+				{
+					try
+					{
+						while ($phpbb_extension_manager->purge_step($ext_name))
+						{
+							// Are we approaching the time limit? If so we want to pause the update and continue after refreshing
+							if ((time() - $start_time) >= $safe_time_limit)
+							{
+								$template->assign_var('S_NEXT_STEP', true);
+
+								meta_refresh(0, $this->u_action . '&amp;action='.$action.'&amp;ext_name=' . urlencode($ext_name));
+							}
+						}
+						$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_PURGE', time(), array($ext_name));
+					}
+					catch (\phpbb\db\migration\exception $e)
+					{
+						$template->assign_var('MIGRATOR_ERROR', $e->getLocalisedMessage($user));
+					}
+				}
 
 				if (!$md_manager->validate_dir())
 				{
@@ -113,11 +136,6 @@ class reenable_module
 					trigger_error($user->lang['EXTENSION_NOT_AVAILABLE'] . adm_back_link($this->u_action), E_USER_WARNING);
 				}
 
-				if ($phpbb_extension_manager->is_enabled($ext_name))
-				{
-					redirect($this->u_action);
-				}
-
 				try
 				{
 					while ($phpbb_extension_manager->enable_step($ext_name))
@@ -127,7 +145,7 @@ class reenable_module
 						{
 							$template->assign_var('S_NEXT_STEP', true);
 
-							meta_refresh(0, $this->u_action . '&amp;action=reenable&amp;ext_name=' . urlencode($ext_name) . '&amp;hash=' . generate_link_hash('reenable.' . $ext_name));
+							meta_refresh(0, $this->u_action . '&amp;action='.$action.'&amp;ext_name=' . urlencode($ext_name));
 						}
 					}
 					$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_ENABLE', time(), array($ext_name));
@@ -194,6 +212,7 @@ class reenable_module
 
 			$this->output_actions('enabled', array(
 				'REENABLE'		=> $this->u_action . '&amp;action=reenable&amp;ext_name=' . urlencode($name),
+				'REINSTALL'		=> $this->u_action . '&amp;action=reinstall&amp;ext_name=' . urlencode($name),
 			));
 		}
 	}

@@ -6,7 +6,13 @@
 
 	<p>{L_ACP_REENABLE_EXPLAIN}</p>
 
-	<table class="table1">
+	
+    <!-- IF S_NEXT_STEP -->
+    <div class="successbox notice">
+        <p>{L_EXTENSION_ENABLE_IN_PROGRESS}</p>
+    </div>
+    <!-- ELSE -->
+    <table class="table1">
 		<col class="row1" ><col class="row1" ><col class="row2" >
 	<thead>
 		<tr>
@@ -65,5 +71,6 @@
 		<!-- ENDIF -->
 	</tbody>
 	</table>
+	<!-- ENDIF -->
 
 <!-- INCLUDE overall_footer.html -->
