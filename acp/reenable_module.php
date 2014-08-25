@@ -9,14 +9,6 @@
 
 namespace lavigor\reenable\acp;
 
-/**
-* @ignore
-*/
-if (!defined('IN_PHPBB'))
-{
-	exit;
-}
-
 class reenable_module
 {
 	var $u_action;
@@ -182,8 +174,11 @@ class reenable_module
 					'META_DISPLAY_NAME' => $md_manager->get_metadata('display-name'),
 					'META_VERSION' => $meta['version'],
 				);
-				
-				if($name == $ext_name) $enabled_extension_meta_data[$name]['REENABLED'] = true;
+
+				if ($name == $ext_name)
+				{
+					$enabled_extension_meta_data[$name]['REENABLED'] = true;
+				}
 
 				$force_update = $this->request->variable('versioncheck_force', false);
 				$updates = $this->version_check($md_manager, $force_update, !$force_update);
