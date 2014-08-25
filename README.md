@@ -1,5 +1,6 @@
 Reenable extensions
 ===================
+[![Build Status](https://travis-ci.org/lavigor/reenable.svg?branch=master)](https://travis-ci.org/lavigor/reenable)
 
 This extension allows you to quickly reenable other extensions to save time for extension developers.
 
