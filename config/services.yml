@@ -1,0 +1,13 @@
+services:
+    lavigor.reenable.listener:
+        class: lavigor\reenable\event\listener
+        arguments:
+            - @config
+            - @dbal.conn
+            - @auth
+            - @template
+            - @user
+            - %core.root_path%
+            - %core.php_ext%
+        tags:
+            - { name: event.listener }
