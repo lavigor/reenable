@@ -145,10 +145,16 @@ class reenable_module
 				{
 					$template->assign_var('MIGRATOR_ERROR', $e->getLocalisedMessage($user));
 				}
-				
+
 				$this->log->enable('admin');
-				if ($action == 'reinstall') $this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_REINSTALL', time(), array($ext_name));
-				else $this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_REENABLE', time(), array($ext_name));
+				if ($action == 'reinstall')
+				{
+					$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_REINSTALL', time(), array($ext_name));
+				}
+				else
+				{
+					$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_REENABLE', time(), array($ext_name));
+				}
 
 				redirect($this->u_action . '&amp;action=list&amp;ext_name=' . urlencode($ext_name));
 				break;
