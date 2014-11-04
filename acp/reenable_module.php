@@ -83,6 +83,8 @@ class reenable_module
 				{
 					redirect($this->u_action);
 				}
+				// We do not want too many logs for reinstallation
+				$this->log->disable('admin');
 
 				while ($phpbb_extension_manager->disable_step($ext_name))
 				{
@@ -94,7 +96,6 @@ class reenable_module
 						meta_refresh(0, $this->u_action . '&amp;action='.$action.'&amp;ext_name=' . urlencode($ext_name));
 					}
 				}
-				$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_DISABLE', time(), array($ext_name));
 
 				if ($action == 'reinstall')
 				{
@@ -110,7 +111,6 @@ class reenable_module
 								meta_refresh(0, $this->u_action . '&amp;action='.$action.'&amp;ext_name=' . urlencode($ext_name));
 							}
 						}
-						$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_PURGE', time(), array($ext_name));
 					}
 					catch (\phpbb\db\migration\exception $e)
 					{
@@ -140,12 +140,15 @@ class reenable_module
 							meta_refresh(0, $this->u_action . '&amp;action='.$action.'&amp;ext_name=' . urlencode($ext_name));
 						}
 					}
-					$this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_ENABLE', time(), array($ext_name));
 				}
 				catch (\phpbb\db\migration\exception $e)
 				{
 					$template->assign_var('MIGRATOR_ERROR', $e->getLocalisedMessage($user));
 				}
+				
+				$this->log->enable('admin');
+				if ($action == 'reinstall') $this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_REINSTALL', time(), array($ext_name));
+				else $this->log->add('admin', $user->data['user_id'], $user->ip, 'LOG_EXT_REENABLE', time(), array($ext_name));
 
 				redirect($this->u_action . '&amp;action=list&amp;ext_name=' . urlencode($ext_name));
 				break;
