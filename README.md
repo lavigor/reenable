@@ -11,17 +11,15 @@ This extension allows you to quickly reenable other extensions to save time for 
 ## Quick Installation
 You can quickly install this extension on the latest version of [phpBB 3.1](https://www.phpbb.com/downloads/) or on the latest development version of [phpBB 3.1-dev](https://github.com/phpbb/phpbb3) by doing the following:
 
-1. Make sure that the extension "[Upload Extensions](https://github.com/BoardTools/upload)" is installed on your board.
-2. Download the [latest ZIP-archive of `master` branch of this repository](https://github.com/lavigor/reenable/archive/master.zip).
-3. Navigate in the ACP to `Customise -> Extension Management -> Upload extensions`.
-4. Choose the downloaded ZIP-archive in the `Browse` field and click `Upload`.
-5. Click `Enable`.
+1. Upload the extension with "[Upload Extensions](https://github.com/BoardTools/upload)".
+2. Check that you have uploaded the correct files.
+3. Click `Enable`.
 
 ## Standard Installation
 You can install this extension on the latest version of [phpBB 3.1](https://www.phpbb.com/downloads/) or on the latest development version of [phpBB 3.1-dev](https://github.com/phpbb/phpbb3) by doing the following:
 
-1. Download the [latest ZIP-archive of `master` branch of this repository](https://github.com/lavigor/reenable/archive/master.zip).
-2. Check out the existing of the folder `/ext/lavigor/reenable/` in the root of your board folder. Create folders if necessary.
+1. Download the extension. You can do it [directly from phpbb.com](https://www.phpbb.com/customise/db/extension/reenable/) or by downloading the [latest ZIP-archive of `master` branch of its GitHub repository](https://github.com/lavigor/reenable/archive/master.zip).
+2. Check out the existence of the folder `/ext/lavigor/reenable/` in the root of your board folder. Create folders if necessary.
 3. Copy the contents of the downloaded `reenable-master` folder to `/ext/lavigor/reenable/`.
 4. Navigate in the ACP to `Customise -> Extension Management -> Manage extensions -> Reenable extensions`.
 5. Click `Enable`.
