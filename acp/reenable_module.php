@@ -259,7 +259,7 @@ class reenable_module
 
 		$version_check = $meta['extra']['version-check'];
 
-		if (version_compare($config['version'], '3.1.1', '>'))
+		if (version_compare($this->config['version'], '3.1.1', '>'))
 		{
 			$version_helper = new \phpbb\version_helper($this->cache, $this->config, new \phpbb\file_downloader(), $this->user);
 		}
