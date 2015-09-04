@@ -41,7 +41,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ACP_REENABLE'					=> 'Réactiver les extensions',
 	'ACP_REENABLE_EXPLAIN'			=> 'Permet de rafraichir rapidement le cache des fichiers et des paramètres des extensions. Très pratique pour les développeurs en permettant de réaliser plusieurs actions en un clic. Il est aussi possible de réinstaller en un clic.<br />Merci de prendre note qu’il est important de connaitre le processus d’activation et de désactivation d’extensions et des résultats obtenus.',
-	'ACP_REENABLE_LIST'				=> 'Extensions à réactiver',
+	'ACP_REENABLE_LIST'				=> 'Réactiver les extensions',
 	'EXTENSION_REENABLE'			=> 'Réactiver',
 	'EXTENSION_REENABLE_EXPLAIN'	=> 'Permet de réactiver une extension en la désactivant puis, en l’activant tout en rafraichissant le cache des fichiers et paramètres de cette extension.',
 	'EXTENSION_REINSTALL'			=> 'Réinstaller',
