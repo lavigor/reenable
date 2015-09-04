@@ -40,5 +40,5 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'ACP_REENABLE'					=> 'Réactiver les extensions',
-	'ACP_REENABLE_LIST'				=> 'Extensions à réactiver',
+	'ACP_REENABLE_LIST'				=> 'Réactiver les extensions',
 ));
